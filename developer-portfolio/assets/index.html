@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React ⚛️</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let flag = "🇧🇸";
+
+      const interests = [
+      "Gaming",
+      "Tech",
+      "Sports",
+      "Rollerskating"];
+
+      const interestObjects = interests.map((interest, i) => ({
+        id: i,
+        title: interest
+      }));
+
+      function Header(props){
+        console.log(props);
+        return (
+          <header>
+            <h1>{props.name}' Portfolio {flag}</h1>
+          </header>
+        );
+      }
+
+      function Main(props){
+        return(
+          <section>
+            <img height = {400} width = {300} src = "images/suit.jpeg" alt = "images/me.jpeg"/>
+            <p>Here lies the culmination of my career.</p>
+            <ul>
+              {props.interests.map((interests) => (
+                <li key = {interests.id}>{interests.title}</li>
+              ))}
+            </ul>
+          </section>
+        );
+      }
+
+      function Footer(props){
+        return(
+          <footer>
+            <p>Copyright {props.year}</p>
+          </footer>
+        );
+      }
+
+      function App(){
+        return(
+          <React.Fragment>
+            <Header name = "Talen Roberts"/>
+            <Main interests = {interestObjects}/>
+            <Footer year = {new Date().getFullYear()}/>
+          </React.Fragment>
+        );
+      }
+
+      ReactDOM.render(
+        <App />,
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
